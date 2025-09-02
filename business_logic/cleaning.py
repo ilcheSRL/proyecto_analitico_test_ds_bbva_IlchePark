@@ -21,12 +21,14 @@ class CleaningTransformer:
         
         # Se recomienda trabajar sobre una copia para evitar advertencias
         df_cleaned = df.copy()
-
+        print("🚀 PARTE #1 OK")
         # 1. Convertir columnas de fecha a formato datetime
         # TODO: Convierte las columnas 'transaction_date' y 'dob' a formato datetime.
         df_cleaned['transaction_date'] = pd.to_datetime(df_cleaned['transaction_date'], errors='coerce')
+
+        print("🚀 PARTE #2 OK")
         df_cleaned['dob'] = pd.to_datetime(df_cleaned['dob'], errors='coerce')
-        
+        print("🚀 PARTE #3 OK")
         # 2. Eliminar valores nulos críticos y montos iguales a 0
         # TODO: Primero, elimina las filas que tengan valores nulos en 'customer_id', 'account_id' o 'amount'.
         # TODO: Luego, filtra el dataframe para quedarte solo con las transacciones cuyo monto ('amount') sea diferente de 0.
