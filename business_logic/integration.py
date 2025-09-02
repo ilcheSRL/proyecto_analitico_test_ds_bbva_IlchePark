@@ -31,7 +31,15 @@ class IntegrationTransformer:
         # TODO: Ahora, une 'merged_df' con 'accounts_df'.
         # Infiere la columna de unión y el tipo de join más adecuado para no perder transacciones.
         full_df = pd.merge(merged_df, accounts_df, on="account_id", how="left")
- 
+        print("📊 Columnas en el DataFrame integrado:")
+        print(full_df.columns.tolist())
+        
+        print("\n📈 Conteo de valores por columna:")
+        print(full_df.count())
+        
+        print("\n🔎 Muestra de 5 filas del DataFrame integrado:")
+        print(full_df.sample(5, random_state=42))
+
         
         print("✅ Integración completada.")
         return full_df
