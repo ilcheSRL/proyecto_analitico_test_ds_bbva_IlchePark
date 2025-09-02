@@ -64,7 +64,31 @@ class FeatureEngineeringTransformer:
               .transform(lambda x: (x.max() - x).dt.days.le(30).sum())
         )
 
+        cols_to_impute = [
+        'mean_amount',
+        'max_amount',
+        'min_amount',
+        'std_amount',
+        'days_since_last_tx',
+        'avg_days_between_tx',
+        'transactions_last_30d'
+        ]
 
+        df[cols_to_impute] = df[cols_to_impute].fillna(0)
+
+        print("Reporte de Nulos, aseguramiento de calidad")
+
+        # Calcular % de nulos por columna
+        null_report = (
+            df.isnull().mean().reset_index()
+            .rename(columns={'index': 'column', 0: 'null_percentage'})
+        )
         
+        # Convertir a %
+        null_report['null_percentage'] = null_report['null_percentage'] * 100
+        
+        print("📊 Porcentaje de valores nulos por columna:")
+        print(null_report)
+
         print("✅ Ingeniería de características completada.")
         return df
