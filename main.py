@@ -22,8 +22,8 @@ def main():
     # TODO: Carga las tablas de 'accounts' y 'transactions' usando la función Utils.load_table()
     # y las constantes correspondientes.
     customers = Utils.load_table(CUSTOMERS_PATH)
-    accounts = 
-    transactions = 
+    accounts = Utils.load_table(ACCOUNTS_PATH)
+    transactions = Utils.load_table(TRANSACTIONS_PATH)
 
     # Instanciar los transformadores
     integrator = IntegrationTransformer()
