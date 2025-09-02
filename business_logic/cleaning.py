@@ -45,7 +45,7 @@ class CleaningTransformer:
         # TODO: Calcula la edad del cliente en años (como un número entero) y guárdala en una nueva columna 'age'.
         # Aquí estamos calculando la edad con 365.25 (Bueba práctica)
         df_cleaned['age'] = ((current_date - df_cleaned['dob']).dt.days // 365.25).astype('Int64')
-        df_cleaned.drop(columns=['dob'], inplace=True)
+
         
         # Este paso ya está hecho para ti
         df_cleaned.drop(columns=['dob'], inplace=True)
