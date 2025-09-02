@@ -50,7 +50,8 @@ def main():
     print("\n===== PIPELINE COMPLETADO CON ÉXITO =====")
     print("\n📊 Muestra del Tablón de Features Final:")
     print(final_feature_table.head())
-    
+    print(final_feature_table_numeric.head())
+
     print("\n📋 Información del Tablón Final:")
     final_feature_table.info()
     final_feature_table_numeric.info()  
