@@ -6,7 +6,7 @@ from constants import (
     ACCOUNTS_PATH, 
     TRANSACTIONS_PATH,
     #OUTPUT_PATH
-    FEATURES_PATH
+    FEATURES_PATH,
     FEATURES_NUMERIC_PATH
 )
 from utils.utils import Utils
