@@ -37,12 +37,13 @@ def main():
     cleaned_data = cleaner.clean_data(integrated_data)
 
     # Paso 4: Ingeniería de Features
-    final_feature_table = feature_creator.create_features(cleaned_data)
+    #final_feature_table = feature_creator.create_features(cleaned_data)
+    final_feature_table, final_feature_table_numeric = feature_creator.create_features(cleaned_data)
 
     # Paso 5: Guardar el resultado
     # TODO: Llama a la función Utils.save_dataframe() para guardar 'final_feature_table'.
     Utils.save_dataframe(final_feature_table, OUTPUT_PATH)
-
+    Utils.save_dataframe(final_feature_table_numeric, OUTPUT_PATH)
     # Pasa la ruta de salida (OUTPUT_PATH) y un nombre de archivo, por ejemplo 'feature_table.csv'.
     
 
@@ -52,7 +53,7 @@ def main():
     
     print("\n📋 Información del Tablón Final:")
     final_feature_table.info()
-    
+    final_feature_table_numeric.info()  
 
 if __name__ == "__main__":
     pd.set_option('display.max_columns', None)
