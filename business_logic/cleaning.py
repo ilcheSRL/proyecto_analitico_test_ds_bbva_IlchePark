@@ -25,6 +25,7 @@ class CleaningTransformer:
         # 1. Convertir columnas de fecha a formato datetime
         # TODO: Convierte las columnas 'transaction_date' y 'dob' a formato datetime.
         df_cleaned['transaction_date'] = pd.to_datetime(df_cleaned['transaction_date'], errors='coerce')
+        print(df_cleaned.sample(5, random_state=42))
 
         print("🚀 PARTE #2 OK")
         df_cleaned['dob'] = pd.to_datetime(df_cleaned['dob'], errors='coerce')
