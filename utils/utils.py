@@ -18,9 +18,7 @@ class Utils:
 
     @staticmethod
     def save_dataframe(df: pd.DataFrame, path: str):
-        """
-        Guarda un DataFrame como un archivo CSV en la ruta especificada.
-        """
-        
+        path = os.path.abspath(path)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
         df.to_csv(path, index=False)
         print(f"💾 DataFrame guardado exitosamente en: {path}")
