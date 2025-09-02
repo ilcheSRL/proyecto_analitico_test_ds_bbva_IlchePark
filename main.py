@@ -6,6 +6,8 @@ from constants import (
     ACCOUNTS_PATH, 
     TRANSACTIONS_PATH,
     OUTPUT_PATH
+    FEATURES_PATH
+    FEATURES_NUMERIC_PATH
 )
 from utils.utils import Utils
 from business_logic.integration import IntegrationTransformer
@@ -42,8 +44,8 @@ def main():
 
     # Paso 5: Guardar el resultado
     # TODO: Llama a la función Utils.save_dataframe() para guardar 'final_feature_table'.
-    Utils.save_dataframe(final_feature_table, OUTPUT_PATH)
-    Utils.save_dataframe(final_feature_table_numeric, OUTPUT_PATH)
+    Utils.save_dataframe(final_feature_table, FEATURES_PATH)
+    Utils.save_dataframe(final_feature_table_numeric, FEATURES_NUMERIC_PATH)
     # Pasa la ruta de salida (OUTPUT_PATH) y un nombre de archivo, por ejemplo 'feature_table.csv'.
     
 
