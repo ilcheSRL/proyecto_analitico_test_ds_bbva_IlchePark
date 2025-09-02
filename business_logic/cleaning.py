@@ -29,13 +29,13 @@ class CleaningTransformer:
 
         print("🚀 PARTE #2 OK")
         df_cleaned['dob'] = pd.to_datetime(df_cleaned['dob'], errors='coerce')
-        print("🚀 PARTE #3 OK")
+        
         # 2. Eliminar valores nulos críticos y montos iguales a 0
         # TODO: Primero, elimina las filas que tengan valores nulos en 'customer_id', 'account_id' o 'amount'.
         # TODO: Luego, filtra el dataframe para quedarte solo con las transacciones cuyo monto ('amount') sea diferente de 0.
         df_cleaned = df_cleaned.dropna(subset=['customer_id', 'account_id', 'amount'])
         df_cleaned = df_cleaned[df_cleaned['amount'] != 0]
-        
+        print("🚀 PARTE #3 OK")
         # 3. Calcular la edad del cliente
         # Aquí sólo vamos a hacer un cambio ya que por cada ejecución debería de tomar el Today.
         #current_date = pd.to_datetime('2025-07-10') --> DESFASADO, NO DEBERÍA DE HABER UNA FECHA DE ESTA MANERA
