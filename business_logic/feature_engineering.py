@@ -86,9 +86,40 @@ class FeatureEngineeringTransformer:
         
         # Convertir a %
         null_report['null_percentage'] = null_report['null_percentage'] * 100
+ 
         
         print("📊 Porcentaje de valores nulos por columna:")
         print(null_report)
 
+
+       #USABLE PARA MACHINE LEARNING
+       # CONVIRTIENDO A NUMÉRICO PARA QUE SEA USÁBLE
+       # ========= construir df_numérico =========
+        df_numeric = df.copy()
+
+        # 1) Convertir booleanos a enteros
+        bool_cols = df_numeric.select_dtypes(include=['bool']).columns
+        if len(bool_cols) > 0:
+            df_numeric[bool_cols] = df_numeric[bool_cols].astype('int8')
+
+        # 2) Convertir datetimes a epoch (segundos) y eliminar la original
+        if 'transaction_date' in df_numeric.columns and pd.api.types.is_datetime64_any_dtype(df_numeric['transaction_date']):
+            df_numeric['transaction_ts'] = (df_numeric['transaction_date'].view('int64') // 10**9).astype('Int64')
+            df_numeric.drop(columns=['transaction_date'], inplace=True)
+
+        # 3) Quitar IDs de texto que no son numéricos (opcional pero recomendado para modelos)
+        drop_ids = ['transaction_id','customer_id','account_id','name','description','currency']
+        df_numeric.drop(columns=[c for c in drop_ids if c in df_numeric.columns], inplace=True, errors='ignore')
+
+        # 4) Forzar lo restante a numérico (lo no convertible queda NaN)
+        for col in df_numeric.columns:
+            if not pd.api.types.is_numeric_dtype(df_numeric[col]):
+                df_numeric[col] = pd.to_numeric(df_numeric[col], errors='coerce')
+
+ 
+
+
+
+        
         print("✅ Ingeniería de características completada.")
-        return df
+        return df, df_numeric
