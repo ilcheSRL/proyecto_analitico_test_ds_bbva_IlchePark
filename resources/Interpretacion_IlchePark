@@ -1,0 +1,25 @@
+
+###########################################################################################################################
+######################################## ¿Cuál es la finalidad del pedido? #################################################
+
+La finalidad del pedido es la definición de construcción de un pipeline completo de datos para Machine Learning.
+
+
+
+## INPUTS
+
+- accounts_large.csv
+- customers_large.csv
+- transactions_large.csv
+
+
+## ¿Cuál es la metodología?
+
+- Integración
+- Cleanning
+- Feature_Engineering
+
+
+## ¿Para Machine Learning? !!!
+
+Entiendo que tiene una finalidad de procesamiento, sin embargo el proceso no tiene definido si se va a generar el Target en el Intermedio.
