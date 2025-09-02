@@ -19,6 +19,12 @@ class IntegrationTransformer:
             pd.DataFrame: Un único DataFrame con toda la información integrada.
         """
         print("🚀 Iniciando la integración de tablas...")
+
+        # Quitar espacios en los nombres de columnas de cada DataFrame
+        transactions_df.columns = transactions_df.columns.str.strip()
+        customers_df.columns = customers_df.columns.str.strip()
+        accounts_df.columns = accounts_df.columns.str.strip()
+
         
         # 1. Unir transacciones con clientes.
         # TODO: Realiza la unión entre 'transactions_df' y 'customers_df'. 
