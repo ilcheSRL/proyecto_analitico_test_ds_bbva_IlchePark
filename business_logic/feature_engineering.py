@@ -49,6 +49,22 @@ class FeatureEngineeringTransformer:
         # TODO: Extrae el día de la semana y el mes de 'transaction_date'.
         df['day_of_week'] = df['transaction_date'].dt.dayofweek   # Lunes=0, Domingo=6
         df['month_of_transaction'] = df['transaction_date'].dt.month
+
+        #5. Agregado adicional
+
+        print("🚀 AGREGADO ADICIONAL: (Experimental para el entrenamiento)")
+        df['mean_amount'] = df.groupby('customer_id')['amount_abs'].transform('mean')
+        df['max_amount'] = df.groupby('customer_id')['amount_abs'].transform('max')
+        df['min_amount'] = df.groupby('customer_id')['amount_abs'].transform('min')
+        df['std_amount'] = df.groupby('customer_id')['amount_abs'].transform('std')
+        df['days_since_last_tx'] = df.groupby('customer_id')['transaction_date'].diff().dt.days
+        df['avg_days_between_tx'] = df.groupby('customer_id')['days_since_last_tx'].transform('mean')
+        df['transactions_last_30d'] = (
+            df.groupby('customer_id')['transaction_date']
+              .transform(lambda x: (x.max() - x).dt.days.le(30).sum())
+        )
+
+
         
         print("✅ Ingeniería de características completada.")
         return df
