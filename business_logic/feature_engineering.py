@@ -104,7 +104,13 @@ class FeatureEngineeringTransformer:
 
         # 2) Convertir datetimes a epoch (segundos) y eliminar la original
         if 'transaction_date' in df_numeric.columns and pd.api.types.is_datetime64_any_dtype(df_numeric['transaction_date']):
-            df_numeric['transaction_ts'] = (df_numeric['transaction_date'].view('int64') // 10**9).astype('Int64')
+            # Extraer período (año y mes) desde transaction_date
+            df_numeric['transaction_period'] = (
+                df_numeric['transaction_date'].dt.year * 100 +
+                df_numeric['transaction_date'].dt.month
+            ).astype('Int64')
+        
+            # Eliminar la columna de fecha original
             df_numeric.drop(columns=['transaction_date'], inplace=True)
 
         # 3) Quitar IDs de texto que no son numéricos (opcional pero recomendado para modelos)
